@@ -59,6 +59,7 @@ ml: Miligramos
 
 ### Constantes
 
+### Constantes
 | Variable | Tipo | Tipo de dato | Unidad |
 | :--- | :--- | :--- | :--- |
 | PRECIO_ESPRESSO | const | number | $ |
@@ -72,6 +73,21 @@ ml: Miligramos
 | CAPACIDAD_LECHE | const | number | ml |
 | CAPACIDAD_AZUCAR | const | number | gr |
 | CAPACIDAD_VASOS | const | number | unidades |
+| CAFE_ESPRESSO | const | number | gr |
+| AGUA_ESPRESSO | const | number | ml |
+| CAFE_AMERICANO | const | number | gr |
+| AGUA_AMERICANO | const | number | ml |
+| CAFE_CAPUCHINO | const | number | gr |
+| AGUA_CAPUCHINO | const | number | ml |
+| LECHE_CAPUCHINO | const | number | ml |
+| AZUCAR_CAPUCHINO | const | number | gr |
+| CAFE_LATTE | const | number | gr |
+| AGUA_LATTE | const | number | ml |
+| LECHE_LATTE | const | number | ml |
+| AZUCAR_LATTE | const | number | gr |
+| TE_TE | const | number | gr |
+| AGUA_TE | const | number | ml |
+| AZUCAR_TE | const | number | gr |
 
 
 
