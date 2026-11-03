@@ -1,53 +1,49 @@
 
-const PRECIO_ESPRESSO = 3000;
-const PRECIO_AMERICANO = 3500;
-const PRECIO_CAPUCHINO = 4500;
-const PRECIO_LATTE = 5000;
-const PRECIO_TE = 2500;
+const precio_Espresso = 3000;
+const precio_Americano = 3500;
+const precio_Capuchino = 4500;
+const precio_Latte = 5000;
+const precio_Te = 2500;
 
 
-const CAPACIDAD_CAFE = 1000;     // gr
-const CAPACIDAD_TE = 300;        // gr
-const CAPACIDAD_AGUA = 5000;     // ml
-const CAPACIDAD_LECHE = 3000;    // ml
-const CAPACIDAD_AZUCAR = 500;    // gr
-const CAPACIDAD_VASOS = 100;     // unidades
+const capacidad_Cafe = 1000;     // gr
+const capacidad_Te = 300;        // gr  
+const capacidad_Leche = 3000;    // ml
+const capacidad_Azucar = 500;    // gr
+const capacidad_Vasos = 100;     // unidades
 
 
-const CAFE_ESPRESSO = 8;        // gr
-const AGUA_ESPRESSO = 30;       // ml
+const cafe_Espresso = 8;        // gr
+const agua_Espresso = 30;       // ml
 
-const CAFE_AMERICANO = 8;       // gr
-const AGUA_AMERICANO = 150;     // ml
+const cafe_Americano = 8;       // gr
+const agua_Americano = 150;     // ml
 
-const CAFE_CAPUCHINO = 8;       // gr
-const AGUA_CAPUCHINO = 30;      // ml
-const LECHE_CAPUCHINO = 120;    // ml
-const AZUCAR_CAPUCHINO = 5;     // gr
+const cafe_Capuchino = 8;       // gr
+const agua_Capuchino = 30;      // ml
+const leche_Capuchino = 120;    // ml
+const azucar_Capuchino = 5;     // gr
 
-const CAFE_LATTE = 8;           // gr
-const AGUA_LATTE = 30;          // ml
-const LECHE_LATTE = 200;        // ml
-const AZUCAR_LATTE = 5;         // gr
+const cafe_Latte = 8;           // gr
+const agua_Latte = 30;          // ml
+const leche_Latte = 200;        // ml
+const azucar_Latte = 5;         // gr
 
-const TE_TE = 2;                // gr
-const AGUA_TE = 200;            // ml
-const AZUCAR_TE = 5;            // gr
-
-
+const te_Te = 2;                // gr
+const agua_Te = 200;            // ml
+const azucar_Te = 5;            // gr
 
 
 
-let saldo = 0;      // $ ingresado por el usuario
-let cambio = 0;     // $ devolver
+let saldo = 0;                  // $ ingresado por el usuario
+let cambio = 0;                 // $ devolver
 
 
-let nivelCafe = CAPACIDAD_CAFE;       // gr
-let nivelTe = CAPACIDAD_TE;           // gr
-let nivelAgua = CAPACIDAD_AGUA;       // ml
-let nivelLeche = CAPACIDAD_LECHE;     // ml
-let nivelAzucar = CAPACIDAD_AZUCAR;   // gr
-let nivelVasos = CAPACIDAD_VASOS;     // unidades
+let nivelCafe = capacidad_Cafe;       // gr
+let nivelTe = capacidad_Te;           // gr    
+let nivelLeche = capacidad_Leche;     // ml
+let nivelAzucar = capacidad_Azucar;   // gr
+let nivelVasos = capacidad_Vasos;     // unidades
 
 
 let monedas1000 = 30;   // unidades
@@ -69,7 +65,37 @@ let maquinaEncendida = true;
 let hayInsumos = true;
 
 
-// VSimulación de compra
+
+
+
+
+if (nivelCafe >= cafe_Espresso && nivelVasos >= 1) {
+    mensaje = "la máquina está lista para preparar un espresso";
+
+}
+else {
+    hayInsumos = false;
+    mensaje = "La máquina no tiene insumos suficientes para preparar un espresso";
+}
+
+
+nivelCafe = nivelCafe - cafe_Espresso;
+nivelVasos--;
+
+nivelCafe = nivelCafe - cafe_Americano;
+nivelVasos--;
+
+nivelCafe = nivelCafe - cafe_Capuchino;
+nivelLeche = nivelLeche - leche_Capuchino;
+nivelAzucar = nivelAzucar - azucar_Capuchino;
+nivelVasos--;
+
+nivelCafe = nivelcafe - cafe_Latte;
+
+
+
+
+// Simulación de compra
 
 
 
@@ -80,13 +106,11 @@ saldo = saldo + 5000;
 productoSeleccionado = "capuchino";
  
 // Cambio = lo que pagó menos lo que cuesta
-cambio = saldo - PRECIO_CAPUCHINO;
+cambio = saldo - precio_Capuchino;
  
 // La máquina gasta lo que lleva un capuchino
-nivelCafe = nivelCafe - CAFE_CAPUCHINO;
-nivelAgua = nivelAgua - AGUA_CAPUCHINO;
-nivelLeche = nivelLeche - LECHE_CAPUCHINO;
-nivelAzucar = nivelAzucar - AZUCAR_CAPUCHINO;
+nivelCafe = nivelCafe - cafe_Capuchino;
+nivelLeche = nivelLeche - leche_Capuchino;
 nivelVasos = nivelVasos - 1;
  
 // El saldo ya se gastó
