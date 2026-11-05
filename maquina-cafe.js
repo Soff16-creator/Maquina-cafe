@@ -79,18 +79,116 @@ else {
 }
 
 
+
+
+
+if (nivelCafe >= cafe_Capuchino && nivelVasos >= 1 nivelcafe >= leche_Capuchino) {
+    mensaje = "la máquina está lista para preparar un capuchino";
+
+}
+else {
+    hayInsumos = false;
+    mensaje = "La máquina no tiene insumos suficientes para preparar un capuchino";
+}
+
+
+
+
+
+if (nivelCafe >= cafe_Americano && nivelVasos >= 1) {
+    mensaje = "la máquina está lista para preparar un americano";
+
+}
+else {
+    hayInsumos = false;
+    mensaje = "La máquina no tiene insumos suficientes para preparar un americano";
+}
+
+
+
+
+
+if (nivelCafe >= cafe_Latte && nivelVasos >= 1  nivelLeche >= leche_Latte) {
+    mensaje = "la máquina está lista para preparar un latte";
+
+}
+else {
+    hayInsumos = false;
+    mensaje = "La máquina no tiene insumos suficientes para preparar un latte";
+}
+
+
+
+
+
+if (nivelTe >= te_Te && nivelVasos >= 1) {
+    mensaje = "la máquina está lista para preparar un te";
+
+}
+else {
+    hayInsumos = false;
+    mensaje = "La máquina no tiene insumos suficientes para preparar un te";
+}
+
+
+
+
+switch (productoSeleccionado) {
+    
+    case "espresso":
+        nivelCafe = nivelCafe - cafe_Espresso;
+        nivelVasos--;
+    break;
+
+    case "americano":
+        nivelCafe = nivelCafe - cafe_Americano;
+        nivelVasos--;
+    break;
+
+    case "capuchino":
+        nivelCafe = nivelCafe - cafe_Capuchino;
+        nivelLeche = nivelLeche - leche_Capuchino;
+        nivelAzucar = nivelAzucar - azucar_Capuchino;
+        nivelVasos--;
+    break;
+
+    case "latte":
+        nivelTe = nivelTe - te_Te;
+        nivelAzucar = nivelAzucar - azucar_Te;
+    break;
+
+    default:
+        mensaje = "Opción no válidad"
+    break;
+}
+
+
+
+
 nivelCafe = nivelCafe - cafe_Espresso;
 nivelVasos--;
 
+
 nivelCafe = nivelCafe - cafe_Americano;
 nivelVasos--;
+
 
 nivelCafe = nivelCafe - cafe_Capuchino;
 nivelLeche = nivelLeche - leche_Capuchino;
 nivelAzucar = nivelAzucar - azucar_Capuchino;
 nivelVasos--;
 
+
 nivelCafe = nivelcafe - cafe_Latte;
+nivelLeche = nivelLeche - leche_Latte;
+nivelAzucar = nivelAzucar - azucar_Latte;
+nivelVasos--;
+
+
+nivelTe = nivelTe - te_Te;
+nivelAzucar = nivelAzucar - azucar_Te;
+
+
 
 
 
