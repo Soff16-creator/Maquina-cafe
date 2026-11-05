@@ -1,37 +1,37 @@
 
-const precio_Espresso = 3000;
-const precio_Americano = 3500;
-const precio_Capuchino = 4500;
-const precio_Latte = 5000;
-const precio_Te = 2500;
+const precioEspresso = 3000;
+const precioAmericano = 3500;
+const precioCapuchino = 4500;
+const precioLatte = 5000;
+const precioTe = 2500;
 
 
-const capacidad_Cafe = 1000;     // gr
-const capacidad_Te = 300;        // gr  
-const capacidad_Leche = 3000;    // ml
-const capacidad_Azucar = 500;    // gr
-const capacidad_Vasos = 100;     // unidades
+const capacidadCafe = 1000;     // gr
+const capacidadTe = 300;        // gr  
+const capacidadLeche = 3000;    // ml
+const capacidadAzucar = 500;    // gr
+const capacidadVasos = 100;     // unidades
 
 
-const cafe_Espresso = 8;        // gr
-const agua_Espresso = 30;       // ml
+const cafeEspresso = 8;        // gr
+const aguaEspresso = 30;       // ml
 
-const cafe_Americano = 8;       // gr
-const agua_Americano = 150;     // ml
+const cafeAmericano = 8;       // gr
+const aguaAmericano = 150;     // ml
 
-const cafe_Capuchino = 8;       // gr
-const agua_Capuchino = 30;      // ml
-const leche_Capuchino = 120;    // ml
-const azucar_Capuchino = 5;     // gr
+const cafeCapuchino = 8;       // gr
+const aguaCapuchino = 30;      // ml
+const lecheCapuchino = 120;    // ml
+const azucarCapuchino = 5;     // gr
 
-const cafe_Latte = 8;           // gr
-const agua_Latte = 30;          // ml
-const leche_Latte = 200;        // ml
-const azucar_Latte = 5;         // gr
+const cafeLatte = 8;           // gr
+const aguaLatte = 30;          // ml
+const lecheLatte = 200;        // ml
+const azucarLatte = 5;         // gr
 
-const te_Te = 2;                // gr
-const agua_Te = 200;            // ml
-const azucar_Te = 5;            // gr
+const teTe = 2;                // gr
+const aguaTe = 200;            // ml
+const azucarTe = 5;            // gr
 
 
 
@@ -39,11 +39,11 @@ let saldo = 0;                  // $ ingresado por el usuario
 let cambio = 0;                 // $ devolver
 
 
-let nivelCafe = capacidad_Cafe;       // gr
-let nivelTe = capacidad_Te;           // gr    
-let nivelLeche = capacidad_Leche;     // ml
-let nivelAzucar = capacidad_Azucar;   // gr
-let nivelVasos = capacidad_Vasos;     // unidades
+let nivelCafe = capacidadCafe;       // gr
+let nivelTe = capacidadTe;           // gr    
+let nivelLeche = capacidadLeche;     // ml
+let nivelAzucar = capacidadAzucar;   // gr
+let nivelVasos = capacidadVasos;     // unidades
 
 
 let monedas1000 = 30;   // unidades
@@ -71,7 +71,7 @@ let hayInsumos = true;
 
 
 
-if (nivelCafe >= cafe_Espresso && nivelVasos >= 1) {
+if (nivelCafe >= cafeEspresso && nivelVasos >= 1) {
     mensaje = "la máquina está lista para preparar un espresso";
 
 }
@@ -84,10 +84,10 @@ else {
 
 
 
-if (nivelCafe >= cafe_Capuchino && nivelVasos >= 1 nivelcafe >= leche_Capuchino) {
+if (nivelCafe >= cafeCapuchino && nivelVasos >= 1 nivelcafe >= lecheCapuchino) {
     mensaje = "la máquina está lista para preparar un capuchino";
-
 }
+
 else {
     hayInsumos = false;
     mensaje = "La máquina no tiene insumos suficientes para preparar un capuchino";
@@ -97,7 +97,7 @@ else {
 
 
 
-if (nivelCafe >= cafe_Americano && nivelVasos >= 1) {
+if (nivelCafe >= cafeAmericano && nivelVasos >= 1) {
     mensaje = "la máquina está lista para preparar un americano";
 
 }
@@ -110,7 +110,7 @@ else {
 
 
 
-if (nivelCafe >= cafe_Latte && nivelVasos >= 1  nivelLeche >= leche_Latte) {
+if (nivelCafe >= cafeLatte && nivelVasos >= 1  nivelLeche >= lecheLatte) {
     mensaje = "la máquina está lista para preparar un latte";
 
 }
@@ -123,7 +123,7 @@ else {
 
 
 
-if (nivelTe >= te_Te && nivelVasos >= 1) {
+if (nivelTe >= teTe && nivelVasos >= 1) {
     mensaje = "la máquina está lista para preparar un te";
 
 }
@@ -140,32 +140,32 @@ let menu = promt("Seleccione un producto del menu:")
 switch (productoSeleccionado) {
     
     case "espresso":
-        nivelCafe = nivelCafe - cafe_Espresso;
+        nivelCafe = nivelCafe - cafeEspresso;
         nivelVasos--;
         mensaje = "Preparando Espresso"
         
         if (saldo >= precio_Espresso){
-            
+
         }
     break;
 
     case "americano":
-        nivelCafe = nivelCafe - cafe_Americano;
+        nivelCafe = nivelCafe - cafeAmericano;
         nivelVasos--;
         mensaje = "Preparando Americano"
     break;
 
     case "capuchino":
-        nivelCafe = nivelCafe - cafe_Capuchino;
-        nivelLeche = nivelLeche - leche_Capuchino;
-        nivelAzucar = nivelAzucar - azucar_Capuchino;
+        nivelCafe = nivelCafe - cafeCapuchino;
+        nivelLeche = nivelLeche - lecheCapuchino;
+        nivelAzucar = nivelAzucar - azucarCapuchino;
         nivelVasos--;
         mensaje = "Preparando Capuchino"
     break;
 
     case "latte":
         nivelTe = nivelTe - te_Te;
-        nivelAzucar = nivelAzucar - azucar_Te;
+        nivelAzucar = nivelAzucar - azucarTe;
         mensaje = "Preparando Te"
     break;
 
@@ -177,28 +177,28 @@ switch (productoSeleccionado) {
 
 
 
-nivelCafe = nivelCafe - cafe_Espresso;
+nivelCafe = nivelCafe - cafeEspresso;
 nivelVasos--;
 
 
-nivelCafe = nivelCafe - cafe_Americano;
+nivelCafe = nivelCafe - cafeAmericano;
 nivelVasos--;
 
 
-nivelCafe = nivelCafe - cafe_Capuchino;
-nivelLeche = nivelLeche - leche_Capuchino;
-nivelAzucar = nivelAzucar - azucar_Capuchino;
+nivelCafe = nivelCafe - cafeCapuchino;
+nivelLeche = nivelLeche - lecheCapuchino;
+nivelAzucar = nivelAzucar - azucarCapuchino;
 nivelVasos--;
 
 
 nivelCafe = nivelcafe - cafe_Latte;
-nivelLeche = nivelLeche - leche_Latte;
-nivelAzucar = nivelAzucar - azucar_Latte;
+nivelLeche = nivelLeche - lecheLatte;
+nivelAzucar = nivelAzucar - azucarLatte;
 nivelVasos--;
 
 
-nivelTe = nivelTe - te_Te;
-nivelAzucar = nivelAzucar - azucar_Te;
+nivelTe = nivelTe - teTe;
+nivelAzucar = nivelAzucar - azucarTe;
 
 
 
@@ -216,11 +216,11 @@ saldo = saldo + 5000;
 productoSeleccionado = "capuchino";
  
 // Cambio = lo que pagó menos lo que cuesta
-cambio = saldo - precio_Capuchino;
+cambio = saldo - precioCapuchino;
  
 // La máquina gasta lo que lleva un capuchino
-nivelCafe = nivelCafe - cafe_Capuchino;
-nivelLeche = nivelLeche - leche_Capuchino;
+nivelCafe = nivelCafe - cafeCapuchino;
+nivelLeche = nivelLeche - lecheCapuchino;
 nivelVasos = nivelVasos - 1;
  
 // El saldo ya se gastó
