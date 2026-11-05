@@ -49,12 +49,14 @@ let nivelVasos = capacidad_Vasos;     // unidades
 let monedas1000 = 30;   // unidades
 let monedas500 = 30;    // unidades
 let monedas200 = 30;    // unidades
+let monedas100 = 30;   // unidades
 
 
-let billetes2000 = 20;    // unidades
-let billetes5000 = 20;    // unidades
+let billetes50000 = 20;    // unidades
+let billetes20000 = 20;    // unidades
 let billetes10000 = 20;   // unidades
-let billetes20000 = 20;   // unidades
+let billetes5000 = 20;   // unidades
+let billetes2000 = 20;   // unidades
 
 
 let productoSeleccionado = "";   // "espresso", "americano", "capuchino", "latte" o "te"
@@ -133,16 +135,24 @@ else {
 
 
 
+let menu = promt("Seleccione un producto del menu:")
+
 switch (productoSeleccionado) {
     
     case "espresso":
         nivelCafe = nivelCafe - cafe_Espresso;
         nivelVasos--;
+        mensaje = "Preparando Espresso"
+        
+        if (saldo >= precio_Espresso){
+            
+        }
     break;
 
     case "americano":
         nivelCafe = nivelCafe - cafe_Americano;
         nivelVasos--;
+        mensaje = "Preparando Americano"
     break;
 
     case "capuchino":
@@ -150,11 +160,13 @@ switch (productoSeleccionado) {
         nivelLeche = nivelLeche - leche_Capuchino;
         nivelAzucar = nivelAzucar - azucar_Capuchino;
         nivelVasos--;
+        mensaje = "Preparando Capuchino"
     break;
 
     case "latte":
         nivelTe = nivelTe - te_Te;
         nivelAzucar = nivelAzucar - azucar_Te;
+        mensaje = "Preparando Te"
     break;
 
     default:
