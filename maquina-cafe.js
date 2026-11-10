@@ -59,7 +59,7 @@ let billetes5000 = 20;   // unidades
 let billetes2000 = 20;   // unidades
 
 
-let productoSeleccionado = "";   // "espresso", "americano", "capuchino", "latte" o "te"
+let productoSeleccionado = "espresso, americano, capuchino, latte"; 
 let mensaje = "";                // texto que muestra la máquina como precios y demás 
 
 
@@ -71,91 +71,53 @@ let hayInsumos = true;
 
 
 
-if (nivelCafe >= cafeEspresso && nivelVasos >= 1) {
-    mensaje = "la máquina está lista para preparar un espresso";
-
-}
-else {
-    hayInsumos = false;
-    mensaje = "La máquina no tiene insumos suficientes para preparar un espresso";
-}
-
-
-
-
-
-if (nivelCafe >= cafeCapuchino && nivelVasos >= 1 nivelcafe >= lecheCapuchino) {
-    mensaje = "la máquina está lista para preparar un capuchino";
-}
-
-else {
-    hayInsumos = false;
-    mensaje = "La máquina no tiene insumos suficientes para preparar un capuchino";
+function verificarInsumos(productoSeleccionado, saldo) {
+    if (nivelCafe >= cafeEspresso && nivelVasos >= 1) return true;
+    if (nivelCafe >= cafeCapuchino && nivelVasos >= 1 && nivelLeche >= lecheCapuchino) return true;
+    if (nivelCafe >= cafeAmericano && nivelVasos >= 1) return true;
+    if (nivelCafe >= cafeLatte && nivelVasos >= 1 && nivelLeche >= lecheLatte) return true;
+    if (nivelTe >= teTe && nivelVasos >= 1) return true;
+    return false;
 }
 
 
-
-
-
-if (nivelCafe >= cafeAmericano && nivelVasos >= 1) {
-    mensaje = "la máquina está lista para preparar un americano";
-
-}
-else {
-    hayInsumos = false;
-    mensaje = "La máquina no tiene insumos suficientes para preparar un americano";
+function verificarSaldo (productoSeleccionado,saldo) {
+    if (productoSeleccionado === "espresso" && saldo >= precioEspresso) return true;
+    if (productoSeleccionado === "americano" && saldo >= precioAmericano) return true;
+    if (productoSeleccionado === "capuchino" && saldo >= precioCapuchino) return true;
+    if (productoSeleccionado === "latte" && saldo >= precioLatte) return true;
+    if (productoSeleccionado === "te" && saldo >= precioTe) return true;
+    return false;
 }
 
 
-
-
-
-if (nivelCafe >= cafeLatte && nivelVasos >= 1  nivelLeche >= lecheLatte) {
-    mensaje = "la máquina está lista para preparar un latte";
-
-}
-else {
-    hayInsumos = false;
-    mensaje = "La máquina no tiene insumos suficientes para preparar un latte";
-}
-
-
-
-
-
-if (nivelTe >= teTe && nivelVasos >= 1) {
-    mensaje = "la máquina está lista para preparar un te";
-
-}
-else {
-    hayInsumos = false;
-    mensaje = "La máquina no tiene insumos suficientes para preparar un te";
-}
-
-
-
-
-let menu = promt("Seleccione un producto del menu:")
+productoSeleccionado = prompt("Seleccione un producto del menú (espresso, americano, capuchino, latte, te):").toLowerCase();
 
 switch (productoSeleccionado) {
     
     case "espresso":
+
+        saldo =parseInt(prompt("El valor es $" + precioEspresso + " ingrese el dinero"));
+        
         nivelCafe = nivelCafe - cafeEspresso;
         nivelVasos--;
         mensaje = "Preparando Espresso"
-        
-        if (saldo >= precio_Espresso){
-
-        }
+    
     break;
 
     case "americano":
+        
+        saldo =parseInt(prompt("El valor es $" + precioAmericano + " ingrese el dinero"));
+        
         nivelCafe = nivelCafe - cafeAmericano;
         nivelVasos--;
         mensaje = "Preparando Americano"
     break;
 
     case "capuchino":
+
+        saldo =parseInt(prompt("El valor es $" + precioCapuchino + " ingrese el dinero"));
+        
         nivelCafe = nivelCafe - cafeCapuchino;
         nivelLeche = nivelLeche - lecheCapuchino;
         nivelAzucar = nivelAzucar - azucarCapuchino;
@@ -164,74 +126,39 @@ switch (productoSeleccionado) {
     break;
 
     case "latte":
-        nivelTe = nivelTe - te_Te;
+
+        saldo =parseInt(prompt("El valor es $" + precioLatte + " ingrese el dinero"));
+       
+        nivelCafe = nivelCafe - cafeLatte;
+        nivelLeche = nivelLeche - lecheLatte;
+        nivelAzucar = nivelAzucar - azucarLatte;
+        nivelVasos--;
+        mensaje = "Preparando Latte"
+    break;
+
+    case "te":
+
+        saldo =parseInt(prompt("El valor es $" + precioTe + " ingrese el dinero"));
+        
+        nivelTe = nivelTe - teTe;
         nivelAzucar = nivelAzucar - azucarTe;
+        nivelVasos--;
         mensaje = "Preparando Te"
     break;
 
     default:
-        mensaje = "Opción no válidad"
+        mensaje = "Opción no válida "
     break;
 }
 
 
 
 
-nivelCafe = nivelCafe - cafeEspresso;
-nivelVasos--;
 
-
-nivelCafe = nivelCafe - cafeAmericano;
-nivelVasos--;
-
-
-nivelCafe = nivelCafe - cafeCapuchino;
-nivelLeche = nivelLeche - lecheCapuchino;
-nivelAzucar = nivelAzucar - azucarCapuchino;
-nivelVasos--;
-
-
-nivelCafe = nivelcafe - cafe_Latte;
-nivelLeche = nivelLeche - lecheLatte;
-nivelAzucar = nivelAzucar - azucarLatte;
-nivelVasos--;
-
-
-nivelTe = nivelTe - teTe;
-nivelAzucar = nivelAzucar - azucarTe;
-
-
-
-
-
-
-// Simulación de compra
-
-
-
-// La persona mete un billete de 5000, el capuchino vale 4500
-saldo = saldo + 5000;
- 
-// La persona presiona el botón del capuchino
-productoSeleccionado = "capuchino";
- 
-// Cambio = lo que pagó menos lo que cuesta
-cambio = saldo - precioCapuchino;
- 
-// La máquina gasta lo que lleva un capuchino
-nivelCafe = nivelCafe - cafeCapuchino;
-nivelLeche = nivelLeche - lecheCapuchino;
-nivelVasos = nivelVasos - 1;
- 
-// El saldo ya se gastó
-saldo = 0;
- 
-// Mensaje
-mensaje = "Disfrute su " + productoSeleccionado + ". Cambio: $" + cambio;
+alert(mensaje);
  
 console.log(mensaje);
 console.log("Café:", nivelCafe);
-console.log("Agua:", nivelAgua);
 console.log("Leche:", nivelLeche);
 console.log("Azúcar:", nivelAzucar);
 console.log("Vasos:", nivelVasos);
