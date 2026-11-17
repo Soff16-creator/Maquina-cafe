@@ -81,6 +81,7 @@ function verificarInsumos(productoSeleccionado, saldo) {
 }
 
 
+
 function verificarSaldo (productoSeleccionado,saldo) {
     if (productoSeleccionado === "espresso" && saldo >= precioEspresso) return true;
     if (productoSeleccionado === "americano" && saldo >= precioAmericano) return true;
@@ -91,9 +92,13 @@ function verificarSaldo (productoSeleccionado,saldo) {
 }
 
 
+
 productoSeleccionado = prompt("Seleccione un producto del menú (espresso, americano, capuchino, latte, te):").toLowerCase();
 
+
+
 switch (productoSeleccionado) {
+   
     
     case "espresso":
 
@@ -105,6 +110,7 @@ switch (productoSeleccionado) {
     
     break;
 
+
     case "americano":
         
         saldo =parseInt(prompt("El valor es $" + precioAmericano + " ingrese el dinero"));
@@ -112,7 +118,9 @@ switch (productoSeleccionado) {
         nivelCafe = nivelCafe - cafeAmericano;
         nivelVasos--;
         mensaje = "Preparando Americano"
+        
     break;
+
 
     case "capuchino":
 
@@ -123,7 +131,9 @@ switch (productoSeleccionado) {
         nivelAzucar = nivelAzucar - azucarCapuchino;
         nivelVasos--;
         mensaje = "Preparando Capuchino"
+
     break;
+
 
     case "latte":
 
@@ -134,7 +144,9 @@ switch (productoSeleccionado) {
         nivelAzucar = nivelAzucar - azucarLatte;
         nivelVasos--;
         mensaje = "Preparando Latte"
+
     break;
+
 
     case "te":
 
@@ -144,12 +156,15 @@ switch (productoSeleccionado) {
         nivelAzucar = nivelAzucar - azucarTe;
         nivelVasos--;
         mensaje = "Preparando Te"
+
     break;
+
 
     default:
         mensaje = "Opción no válida "
     break;
 }
+
 
 
 
