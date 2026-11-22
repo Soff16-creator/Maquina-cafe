@@ -1,4 +1,3 @@
-
 const precioEspresso = 3000;
 const precioAmericano = 3500;
 const precioCapuchino = 4500;
@@ -82,89 +81,165 @@ function verificarInsumos(productoSeleccionado, saldo) {
 
 
 
-function verificarSaldo (productoSeleccionado,saldo) {
-    if (productoSeleccionado === "espresso" && saldo >= precioEspresso) return true;
-    if (productoSeleccionado === "americano" && saldo >= precioAmericano) return true;
-    if (productoSeleccionado === "capuchino" && saldo >= precioCapuchino) return true;
-    if (productoSeleccionado === "latte" && saldo >= precioLatte) return true;
-    if (productoSeleccionado === "te" && saldo >= precioTe) return true;
-    return false;
+
+
+
+
+function verificarSaldo(precio) {
+    saldo = parseInt(prompt("El valor es $" + precio + " Ingrese el dinero:"));
+
+
+    while (saldo < precio) {
+        alert("Saldo insuficiente. Debe ingresar los $" + precio + " completos.");
+        saldo = parseInt(prompt("Ingrese los $" + precio + " completos:"));
+    }
+
+    
+    cambio = saldo - precio;
+    if (cambio > 0) {
+        entregarCambio(cambio);
+    }
+
 }
+
+
+
+
+
+
+function entregarCambio(montoCambio) {
+    let restante = montoCambio;
+
+   
+    while (restante >= 50000 && billetes50000 > 0) {
+        restante -= 50000;
+        billetes50000--;
+    }
+
+    
+    while (restante >= 20000 && billetes20000 > 0) {
+        restante -= 20000;
+        billetes20000--;
+    }
+
+   
+    while (restante >= 10000 && billetes10000 > 0) {
+        restante -= 10000;
+        billetes10000--;
+    }
+
+    
+    while (restante >= 5000 && billetes5000 > 0) {
+        restante -= 5000;
+        billetes5000--;
+    }
+
+   
+    while (restante >= 2000 && billetes2000 > 0) {
+        restante -= 2000;
+        billetes2000--;
+    }
+
+  
+    while (restante >= 1000 && monedas1000 > 0) {
+        restante -= 1000;
+        monedas1000--;
+    }
+
+    
+    while (restante >= 500 && monedas500 > 0) {
+        restante -= 500;
+        monedas500--;
+    }
+
+   
+    while (restante >= 200 && monedas200 > 0) {
+        restante -= 200;
+        monedas200--;
+    }
+
+    
+    while (restante >= 100 && monedas100 > 0) {
+        restante -= 100;
+        monedas100--;
+    }
+
+
+    if (restante === 0) {
+        return true;
+    } 
+    
+    
+    else {
+       alert("No hay suficiente cambio para devolver. Por favor, contacte al administrador.");
+        return false;
+    }
+}
+
+
+
 
 
 
 productoSeleccionado = prompt("Seleccione un producto del menú (espresso, americano, capuchino, latte, te):").toLowerCase();
 
-
-
 switch (productoSeleccionado) {
-   
     
     case "espresso":
-
-        saldo =parseInt(prompt("El valor es $" + precioEspresso + " ingrese el dinero"));
         
-        nivelCafe = nivelCafe - cafeEspresso;
+        verificarSaldo(precioEspresso);
+
+        nivelCafe -= cafeEspresso;
         nivelVasos--;
-        mensaje = "Preparando Espresso"
+        mensaje = "Preparando Espresso. Su cambio es: $" + cambio;
     
     break;
-
 
     case "americano":
         
-        saldo =parseInt(prompt("El valor es $" + precioAmericano + " ingrese el dinero"));
+        verificarSaldo(precioAmericano);
         
-        nivelCafe = nivelCafe - cafeAmericano;
+        nivelCafe -= cafeAmericano;
         nivelVasos--;
-        mensaje = "Preparando Americano"
-        
+        mensaje = "Preparando Americano. Su cambio es: $" + cambio;
     break;
-
 
     case "capuchino":
 
-        saldo =parseInt(prompt("El valor es $" + precioCapuchino + " ingrese el dinero"));
-        
-        nivelCafe = nivelCafe - cafeCapuchino;
-        nivelLeche = nivelLeche - lecheCapuchino;
-        nivelAzucar = nivelAzucar - azucarCapuchino;
+        verificarSaldo(precioCapuchino);
+
+        nivelCafe -= cafeCapuchino;
+        nivelLeche -= lecheCapuchino;
+        nivelAzucar -= azucarCapuchino;
         nivelVasos--;
-        mensaje = "Preparando Capuchino"
-
+        mensaje = "Preparando Capuchino. Su cambio es: $" + cambio;
     break;
-
 
     case "latte":
 
-        saldo =parseInt(prompt("El valor es $" + precioLatte + " ingrese el dinero"));
-       
-        nivelCafe = nivelCafe - cafeLatte;
-        nivelLeche = nivelLeche - lecheLatte;
-        nivelAzucar = nivelAzucar - azucarLatte;
+        verificarSaldo(precioLatte);
+
+        nivelCafe -= cafeLatte;
+        nivelLeche -= lecheLatte;
+        nivelAzucar -= azucarLatte;
         nivelVasos--;
-        mensaje = "Preparando Latte"
-
+        mensaje = "Preparando Latte. Su cambio es: $" + cambio;
     break;
-
 
     case "te":
 
-        saldo =parseInt(prompt("El valor es $" + precioTe + " ingrese el dinero"));
+        verificarSaldo(precioTe);
         
-        nivelTe = nivelTe - teTe;
-        nivelAzucar = nivelAzucar - azucarTe;
+        nivelTe -= teTe;
+        nivelAzucar -= azucarTe;
         nivelVasos--;
-        mensaje = "Preparando Te"
-
+        mensaje = "Preparando Te. Su cambio es: $" + cambio;
     break;
-
 
     default:
         mensaje = "Opción no válida "
     break;
 }
-
 
 
 
@@ -177,4 +252,19 @@ console.log("Café:", nivelCafe);
 console.log("Leche:", nivelLeche);
 console.log("Azúcar:", nivelAzucar);
 console.log("Vasos:", nivelVasos);
+console.log("Billetes $50.000:", billetes50000);
+console.log("Billetes $20.000:", billetes20000);
+console.log("Billetes $10.000:", billetes10000);
+console.log("Billetes $5.000:", billetes5000);
+console.log("Billetes $2.000:", billetes2000);
+console.log("Monedas $1.000:", monedas1000);
+console.log("Monedas $500:", monedas500);
+console.log("Monedas $200:", monedas200);
+console.log("Monedas $100:", monedas100);
+
+
+
+
+
+
  
