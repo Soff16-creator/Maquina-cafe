@@ -234,9 +234,9 @@ switch (opcion) {
         alert("Sin insumos para Espresso");
     }
 
-break;
-    
     break;
+    
+    
 
     case 2:
         
