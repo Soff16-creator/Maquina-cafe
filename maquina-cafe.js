@@ -97,12 +97,13 @@ formulario.addEventListener("submit", function (evento) {
   } else {
     saldo = saldo + dinero;
     actualizarPantalla();
+
+    if (opcionElegida > 0) {
+      verificarSaldo(precioActual);
+    }
   }
   inputDinero.value = "";
 });
-
-// Arranca mostrando el saldo en $0 y los stocks en 100
-actualizarPantalla();
 
 
 
@@ -122,22 +123,22 @@ function verificarInsumos(productoSeleccionado, saldo) {
 
 
 function verificarSaldo(precio) {
-    saldo = parseInt(prompt("El valor es $" + precio + " Ingrese el dinero:"));
+  if (saldo < precio) {
+    dispensador.textContent = "Faltan $" + (precio - saldo);
+    return;
+  }
 
+  if (opcionElegida === 1) { nivelCafe -= cafeEspresso; dispensador.textContent = "Espresso listo"; }
+  if (opcionElegida === 2) { nivelCafe -= cafeAmericano; dispensador.textContent = "Americano listo"; }
+  if (opcionElegida === 3) { nivelCafe -= cafeCapuchino; nivelLeche -= lecheCapuchino; nivelAzucar -= azucarCapuchino; dispensador.textContent = "Capuchino listo"; }
+  if (opcionElegida === 4) { nivelCafe -= cafeLatte; nivelLeche -= lecheLatte; nivelAzucar -= azucarLatte; dispensador.textContent = "Latte listo"; }
+  if (opcionElegida === 5) { nivelTe -= teTe; nivelAzucar -= azucarTe; dispensador.textContent = "Té listo"; }
+  nivelVasos--;
 
-    while (saldo < precio) {
-        alert("Saldo insuficiente. Debe ingresar los $" + precio + " completos.");
-        saldo = parseInt(prompt("Ingrese los $" + precio + " completos:"));
-    }
-
-    
-    cambio = saldo - precio;
-    if (cambio > 0) {
-        entregarCambio(cambio);
-    }
-
+  saldo = saldo - precio;
+  opcionElegida = 0;
+  actualizarPantalla();
 }
-
 
 
 
@@ -310,6 +311,25 @@ document.querySelector('[data-select="3"]').addEventListener("click", function (
 document.querySelector('[data-select="4"]').addEventListener("click", function () { pedirProducto(4); });
 document.querySelector('[data-select="5"]').addEventListener("click", function () { pedirProducto(5); });
 
+
+
+function devolverCambio() {
+  if (saldo > 0) {
+    let sePudo = entregarCambio(saldo);
+    if (sePudo === true) {
+      pantallaSaldo.textContent = "Cambio: $" + saldo;
+      saldo = 0;
+    }
+  } else {
+    alert("No hay cambio para devolver");
+  }
+
+  opcionElegida = 0;
+  precioActual = 0;
+  dispensador.textContent = "";
+}
+
+document.querySelector('[data-action="return-change"]').addEventListener("click", devolverCambio);
 
 
  
