@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Máquina de café</title>
   <link rel="stylesheet" href="maquina-cafe.css">
-  <script src="maquina-cafe.js"></script>
+  
 </head>
 <body>
+   
+  
 
   <main class="machine">
 
@@ -27,7 +29,7 @@
               <span class="shelf__code">1</span>
               <span class="shelf__name">Esspresso</span>
               <span class="shelf__price">$3.000</span>
-              <span class="shelf__stock">Stock: <b>123</b></span>
+              <span class="shelf__stock" id="stock_esspresso">Stock: <b>123</b></span>
             </div>
           </div>
 
@@ -37,7 +39,7 @@
               <span class="shelf__code">2</span>
               <span class="shelf__name">Americano</span>
               <span class="shelf__price">$3.500</span>
-              <span class="shelf__stock">Stock: 100</span>
+              <span class="shelf__stock" id="stock_americano">Stock: 100</span>
             </div>
           </div>
 
@@ -46,7 +48,7 @@
             <div class="shelf__info">
               <span class="shelf__code">3</span>
               <span class="shelf__name">Capuchino</span>
-              <span class="shelf__price">$4.000</span>
+              <span class="shelf__price">$4.500</span>
               <span class="shelf__stock" id="stock_capuchino">Stock: 100</span>
             </div>
           </div>
@@ -57,7 +59,7 @@
               <span class="shelf__code">4</span>
               <span class="shelf__name">Latte</span>
               <span class="shelf__price">$5.000</span>
-              <span class="shelf__stock">Stock: <b>123</b></span>
+              <span class="shelf__stock" id="stock_latte">Stock: <b>123</b></span>
             </div>
           </div>
 
@@ -67,7 +69,7 @@
               <span class="shelf__code">5</span>
               <span class="shelf__name">Te</span>
               <span class="shelf__price">$2.500</span>
-              <span class="shelf__stock">Stock: <b>123</b></span>
+              <span class="shelf__stock" id="stock_te">Stock: <b>123</b></span>
             </div>
           </div>
           <span class="glass__shine" aria-hidden="true"></span>
@@ -140,5 +142,8 @@
       </aside>
     </div>
   </main>
+
+  <script src="maquina-cafe.js"></script>
+  
 </body>
 </html>
