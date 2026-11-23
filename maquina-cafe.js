@@ -65,8 +65,45 @@ let mensaje = "";                // texto que muestra la máquina como precios y
 let maquinaEncendida = true;
 let hayInsumos = true;
 
+let opcionElegida = 0;
+let precioActual = 0;
 
 
+
+
+// --- COnecto con html ---
+const pantallaSaldo = document.getElementById("credit");
+const formulario = document.getElementById("balance-form");
+const inputDinero = document.getElementById("balance-input");
+const dispensador = document.getElementById("dispenser");
+
+// --- actualiza la pantalla y stocks ---
+function actualizarPantalla() {
+  pantallaSaldo.textContent = "$" + saldo;
+
+  const stocks = document.querySelectorAll(".shelf__stock");
+  for (let i = 0; i < stocks.length; i++) {
+    stocks[i].textContent = "Stock: " + nivelVasos;
+  }
+}
+
+// --- abonar ---
+formulario.addEventListener("submit", function (evento) {
+  evento.preventDefault();
+  let dinero = parseInt(inputDinero.value);
+
+  if (isNaN(dinero) || dinero <= 0) {
+    alert("Ingrese un valor válido");
+  } else {
+    saldo = saldo + dinero;
+    actualizarPantalla();
+
+    if (opcionElegida > 0) {
+      verificarSaldo(precioActual);
+    }
+  }
+  inputDinero.value = "";
+});
 
 
 
@@ -86,20 +123,22 @@ function verificarInsumos(productoSeleccionado, saldo) {
 
 
 function verificarSaldo(precio) {
-    saldo = parseInt(prompt("El valor es $" + precio + " Ingrese el dinero:"));
+  if (saldo < precio) {
+    dispensador.textContent = "Faltan $" + (precio - saldo);
+    return;
+  }
 
-    while (saldo < precio) {
-        alert("Saldo insuficiente. Debe ingresar los $" + precio + " completos.");
-        saldo = parseInt(prompt("Ingrese los $" + precio + " completos:"));
-    }
+  if (opcionElegida === 1) { nivelCafe -= cafeEspresso; dispensador.textContent = "Espresso listo"; }
+  if (opcionElegida === 2) { nivelCafe -= cafeAmericano; dispensador.textContent = "Americano listo"; }
+  if (opcionElegida === 3) { nivelCafe -= cafeCapuchino; nivelLeche -= lecheCapuchino; nivelAzucar -= azucarCapuchino; dispensador.textContent = "Capuchino listo"; }
+  if (opcionElegida === 4) { nivelCafe -= cafeLatte; nivelLeche -= lecheLatte; nivelAzucar -= azucarLatte; dispensador.textContent = "Latte listo"; }
+  if (opcionElegida === 5) { nivelTe -= teTe; nivelAzucar -= azucarTe; dispensador.textContent = "Té listo"; }
+  nivelVasos--;
 
-    cambio = saldo - precio;
-    if (cambio > 0) {
-        entregarCambio(cambio);
-    }
-
+  saldo = saldo - precio;
+  opcionElegida = 0;
+  actualizarPantalla();
 }
-
 
 
 
@@ -165,7 +204,10 @@ function entregarCambio(montoCambio) {
 
     if (restante === 0) {
         return true;
-    } else {
+    } 
+    
+    
+    else {
        alert("No hay suficiente cambio para devolver. Por favor, contacte al administrador.");
         return false;
     }
@@ -176,71 +218,120 @@ function entregarCambio(montoCambio) {
 
 
 
-productoSeleccionado = prompt("Seleccione un producto del menú (espresso, americano, capuchino, latte, te):").toLowerCase();
+function pedirProducto(opcion) {
 
-switch (productoSeleccionado) {
+switch (opcion) {
     
-    case "espresso":
-        
-        verificarSaldo(precioEspresso);
-
-        nivelCafe = nivelCafe - cafeEspresso;
-        nivelVasos--;
-        mensaje = "Preparando Espresso. Su cambio es: $" + cambio;
+    case 1:
     
-    break;
+    if (nivelCafe >= cafeEspresso && nivelVasos >= 1) {
+        opcionElegida = 1;
+        precioActual = precioEspresso;
+        dispensador.textContent = "Espresso: $" + precioEspresso + ". Ingrese dinero.";
 
-    case "americano":
+    } else {
+
+        alert("Sin insumos para Espresso");
+    }
+
+    break;
+    
+    
+
+    case 2:
         
-        verificarSaldo(precioAmericano);
+       if (nivelCafe >= cafeAmericano && nivelVasos >= 1) {
+        opcionElegida = 2;
+        precioActual = precioAmericano;
+        dispensador.textContent = "Americano: $" + precioAmericano + ". Ingrese dinero.";
+
+     } else {
+
+        alert("Sin insumos para Americano");
+    }
         
-        nivelCafe = nivelCafe - cafeAmericano;
-        nivelVasos--;
-        mensaje = "Preparando Americano. Su cambio es: $" + cambio;
-    break;
-
-    case "capuchino":
-
-        verificarSaldo(precioCapuchino);
-
-        nivelCafe = nivelCafe - cafeCapuchino;
-        nivelLeche = nivelLeche - lecheCapuchino;
-        nivelAzucar = nivelAzucar - azucarCapuchino;
-        nivelVasos--;
-        mensaje = "Preparando Capuchino. Su cambio es: $" + cambio;
-    break;
-
-    case "latte":
-
-        verificarSaldo(precioLatte);
-
-        nivelCafe = nivelCafe - cafeLatte;
-        nivelLeche = nivelLeche - lecheLatte;
-        nivelAzucar = nivelAzucar - azucarLatte;
-        nivelVasos--;
-        mensaje = "Preparando Latte. Su cambio es: $" + cambio;
-    break;
-
-    case "te":
-
-        verificarSaldo(precioTe);
         
-        nivelTe = nivelTe - teTe;
-        nivelAzucar = nivelAzucar - azucarTe;
-        nivelVasos--;
-        mensaje = "Preparando Te. Su cambio es: $" + cambio;
+    break;
+
+    case 3:
+
+        if (nivelCafe >= cafeCapuchino && nivelVasos >= 1 && nivelLeche >= lecheCapuchino) {
+            opcionElegida = 3;
+            precioActual = precioCapuchino;
+            dispensador.textContent = "Capuchino: $" + precioCapuchino + ". Ingrese dinero.";
+
+        } else {
+            alert("Sin insumos para Capuchino");
+        }
+
+    break;
+
+    case 4:
+
+        if (nivelCafe >= cafeLatte && nivelVasos >= 1 && nivelLeche >= lecheLatte) {
+            opcionElegida = 4;
+            precioActual = precioLatte;
+            dispensador.textContent = "Latte: $" + precioLatte + ". Ingrese dinero.";
+
+        } else {
+            alert("Sin insumos para Latte");
+        }
+
+    break;
+
+    case 5:
+
+        if (nivelTe >= teTe && nivelVasos >= 1) {
+            opcionElegida = 5;
+            precioActual = precioTe;
+            dispensador.textContent = "Té: $" + precioTe + ". Ingrese dinero.";  
+
+        } else {
+            alert("Sin insumos para Té");
+        }       
     break;
 
     default:
         mensaje = "Opción no válida "
     break;
+
+}
 }
 
 
 
 
 
-alert(mensaje);
+
+
+
+document.querySelector('[data-select="1"]').addEventListener("click", function () { pedirProducto(1); });
+document.querySelector('[data-select="2"]').addEventListener("click", function () { pedirProducto(2); });
+document.querySelector('[data-select="3"]').addEventListener("click", function () { pedirProducto(3); });
+document.querySelector('[data-select="4"]').addEventListener("click", function () { pedirProducto(4); });
+document.querySelector('[data-select="5"]').addEventListener("click", function () { pedirProducto(5); });
+
+
+
+function devolverCambio() {
+  if (saldo > 0) {
+    let sePudo = entregarCambio(saldo);
+    if (sePudo === true) {
+      pantallaSaldo.textContent = "Cambio: $" + saldo;
+      saldo = 0;
+    }
+  } else {
+    alert("No hay cambio para devolver");
+  }
+
+  opcionElegida = 0;
+  precioActual = 0;
+  dispensador.textContent = "";
+}
+
+document.querySelector('[data-action="return-change"]').addEventListener("click", devolverCambio);
+
+
  
 console.log(mensaje);
 console.log("Café:", nivelCafe);
